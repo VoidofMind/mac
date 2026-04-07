@@ -1,0 +1,1068 @@
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local TweenService = game:GetService("TweenService")
+local SoundService = game:GetService("SoundService")
+local LocalPlayer = Players.LocalPlayer
+local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "ScreenGui"
+screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+screenGui.Parent = PlayerGui
+
+local icon = Instance.new("Frame")
+icon.Name = "Icon"
+icon.BackgroundTransparency = 1
+icon.BackgroundColor3 = Color3.new(1, 1, 1)
+icon.BorderColor3 = Color3.new()
+icon.BorderSizePixel = 0
+icon.Size = UDim2.new(0, 100, 0, 100)
+icon.Parent = screenGui
+
+local imageButton = Instance.new("ImageButton")
+imageButton.Name = "ImageButton"
+imageButton.BackgroundColor3 = Color3.new(1, 1, 1)
+imageButton.Image = "rbxassetid://435423285"
+imageButton.BackgroundTransparency = 1
+imageButton.Position = UDim2.new(0.12, 0, 0.1, 0)
+imageButton.BorderColor3 = Color3.new()
+imageButton.BorderSizePixel = 0
+imageButton.Size = UDim2.new(0, 45, 0, 45)
+imageButton.Parent = icon
+
+local imageButtonDragDetector = Instance.new("UIDragDetector")
+imageButtonDragDetector.Name = "UIDragDetector"
+imageButtonDragDetector.Parent = imageButton
+
+local uICorner_imageButton = Instance.new("UICorner")
+uICorner_imageButton.Name = "UICorner"
+uICorner_imageButton.CornerRadius = UDim.new(0.2, 9)
+uICorner_imageButton.Parent = imageButton
+
+local window = Instance.new("Frame")
+window.Name = "Window"
+window.BackgroundColor3 = Color3.new(1, 1, 1)
+window.Position = UDim2.new(0.179, -25, 0.176, 0)
+window.BorderColor3 = Color3.new()
+window.BorderSizePixel = 0
+window.Size = UDim2.new(0, 487, 0, 294)
+window.Parent = screenGui
+
+local windowDragDetector = Instance.new("UIDragDetector")
+windowDragDetector.Name = "DragWindow"
+windowDragDetector.Parent = window
+
+local uICorner_window = Instance.new("UICorner")
+uICorner_window.Name = "UICorner"
+uICorner_window.Parent = window
+
+local uIStroke_window = Instance.new("UIStroke")
+uIStroke_window.Name = "UIStroke"
+uIStroke_window.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+uIStroke_window.Color = Color3.new(0.647, 0.647, 0.647)
+uIStroke_window.Thickness = 0.3
+uIStroke_window.Parent = window
+
+local username = Instance.new("StringValue")
+username.Name = "Username"
+username.Parent = window
+
+local topbar = Instance.new("Frame")
+topbar.Name = "Topbar"
+topbar.BackgroundColor3 = Color3.new(0.867, 0.867, 0.867)
+topbar.BorderColor3 = Color3.new()
+topbar.ZIndex = 2
+topbar.BorderSizePixel = 0
+topbar.Size = UDim2.new(0, 487, 0, 25)
+topbar.Parent = window
+
+local uICorner_topbar = Instance.new("UICorner")
+uICorner_topbar.Name = "UICorner"
+uICorner_topbar.Parent = topbar
+
+local nameLabel = Instance.new("TextLabel")
+nameLabel.Name = "Name"
+nameLabel.FontFace = Font.new("rbxassetid://12187370747")
+nameLabel.TextColor3 = Color3.new()
+nameLabel.Text = "MAC GUI"
+nameLabel.BackgroundColor3 = Color3.new(1, 1, 1)
+nameLabel.BackgroundTransparency = 1
+nameLabel.Position = UDim2.new(0.294, 0, 0.12, 0)
+nameLabel.BorderSizePixel = 0
+nameLabel.BorderColor3 = Color3.new()
+nameLabel.TextSize = 14
+nameLabel.Size = UDim2.new(0, 200, 0, 22)
+nameLabel.Parent = topbar
+
+local exit = Instance.new("TextButton")
+exit.Name = "Exit"
+exit.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json")
+exit.TextColor3 = Color3.new()
+exit.BorderColor3 = Color3.new()
+exit.Text = ""
+exit.AutoButtonColor = false
+exit.BackgroundColor3 = Color3.new(1, 0, 0)
+exit.Position = UDim2.new(0.0123, 0, 0.28, 0)
+exit.BorderSizePixel = 0
+exit.TextSize = 14
+exit.Size = UDim2.new(0, 15, 0, 15)
+exit.Parent = topbar
+
+local uIGradient_exit = Instance.new("UIGradient")
+uIGradient_exit.Name = "UIGradient"
+uIGradient_exit.Rotation = 90
+uIGradient_exit.Color = ColorSequence.new({
+	ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
+	ColorSequenceKeypoint.new(1, Color3.new(0.702, 0, 0)),
+})
+uIGradient_exit.Parent = exit
+
+local uIStroke_exit = Instance.new("UIStroke")
+uIStroke_exit.Name = "UIStroke"
+uIStroke_exit.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+uIStroke_exit.Color = Color3.new(0.647, 0.647, 0.647)
+uIStroke_exit.Thickness = 0.3
+uIStroke_exit.Parent = exit
+
+local uICorner_exit = Instance.new("UICorner")
+uICorner_exit.Name = "UICorner"
+uICorner_exit.CornerRadius = UDim.new(1, 0)
+uICorner_exit.Parent = exit
+
+local fold = Instance.new("TextButton")
+fold.Name = "Fold"
+fold.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json")
+fold.TextColor3 = Color3.new()
+fold.BorderColor3 = Color3.new()
+fold.Text = ""
+fold.AutoButtonColor = false
+fold.BackgroundColor3 = Color3.new(1, 1, 0)
+fold.Position = UDim2.new(0.054, 0, 0.28, 0)
+fold.BorderSizePixel = 0
+fold.TextSize = 14
+fold.Size = UDim2.new(0, 15, 0, 15)
+fold.Parent = topbar
+
+local uIStroke_fold = Instance.new("UIStroke")
+uIStroke_fold.Name = "UIStroke"
+uIStroke_fold.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+uIStroke_fold.Color = Color3.new(0.647, 0.647, 0.647)
+uIStroke_fold.Thickness = 0.3
+uIStroke_fold.Parent = fold
+
+local uICorner_fold = Instance.new("UICorner")
+uICorner_fold.Name = "UICorner"
+uICorner_fold.CornerRadius = UDim.new(1, 0)
+uICorner_fold.Parent = fold
+
+local uIGradient_fold = Instance.new("UIGradient")
+uIGradient_fold.Name = "UIGradient"
+uIGradient_fold.Rotation = 90
+uIGradient_fold.Color = ColorSequence.new({
+	ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
+	ColorSequenceKeypoint.new(1, Color3.new(0.69, 0.702, 0)),
+})
+uIGradient_fold.Parent = fold
+
+local hide = Instance.new("TextButton")
+hide.Name = "Hide"
+hide.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json")
+hide.TextColor3 = Color3.new()
+hide.BorderColor3 = Color3.new()
+hide.Text = ""
+hide.AutoButtonColor = false
+hide.BackgroundColor3 = Color3.new(0.349, 1, 0)
+hide.Position = UDim2.new(0.098, 0, 0.28, 0)
+hide.BorderSizePixel = 0
+hide.TextSize = 14
+hide.Size = UDim2.new(0, 15, 0, 15)
+hide.Parent = topbar
+
+local uIStroke_hide = Instance.new("UIStroke")
+uIStroke_hide.Name = "UIStroke"
+uIStroke_hide.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+uIStroke_hide.Color = Color3.new(0.647, 0.647, 0.647)
+uIStroke_hide.Thickness = 0.3
+uIStroke_hide.Parent = hide
+
+local uICorner_hide = Instance.new("UICorner")
+uICorner_hide.Name = "UICorner"
+uICorner_hide.CornerRadius = UDim.new(1, 0)
+uICorner_hide.Parent = hide
+
+local uIGradient_hide = Instance.new("UIGradient")
+uIGradient_hide.Name = "UIGradient"
+uIGradient_hide.Rotation = 90
+uIGradient_hide.Color = ColorSequence.new({
+	ColorSequenceKeypoint.new(0, Color3.new(1, 1, 1)),
+	ColorSequenceKeypoint.new(1, Color3.new(0.0588, 0.702, 0)),
+})
+uIGradient_hide.Parent = hide
+
+local accentBar = Instance.new("Frame")
+accentBar.Name = "AccentBar"
+accentBar.BackgroundColor3 = Color3.new(0.867, 0.867, 0.867)
+accentBar.Position = UDim2.new(0, 0, 0.0408, 0)
+accentBar.BorderColor3 = Color3.new()
+accentBar.BorderSizePixel = 0
+accentBar.Size = UDim2.new(0, 487, 0, 25)
+accentBar.Parent = window
+
+local buttons = Instance.new("Frame")
+buttons.Name = "Buttons"
+buttons.BackgroundColor3 = Color3.new(1, 1, 1)
+buttons.Position = UDim2.new(0.0123, 0, 0.126, 0)
+buttons.BorderColor3 = Color3.new()
+buttons.BorderSizePixel = 0
+buttons.Size = UDim2.new(0, 112, 0, 240)
+buttons.Parent = window
+
+local function attachButtonSounds(button)
+	local hoverSound = Instance.new("Sound")
+	hoverSound.SoundId = "rbxassetid://75987248894367"
+	hoverSound.Parent = button
+
+	local clickSound = Instance.new("Sound")
+	clickSound.SoundId = "rbxassetid://136252594490706"
+	clickSound.Parent = button
+
+	button.MouseEnter:Connect(function()
+		hoverSound:Play()
+	end)
+
+	button.Activated:Connect(function()
+		clickSound:Play()
+	end)
+end
+
+local teleport = Instance.new("TextButton")
+teleport.Name = "Teleport"
+teleport.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json")
+teleport.TextColor3 = Color3.new(0.898, 0.898, 0.898)
+teleport.BorderColor3 = Color3.new()
+teleport.Text = "Teleport"
+teleport.AutoButtonColor = false
+teleport.BackgroundColor3 = Color3.new(0.529, 0.529, 0.529)
+teleport.Position = UDim2.new(0.0536, 0, 0.0292, 0)
+teleport.BorderSizePixel = 0
+teleport.TextSize = 14
+teleport.Size = UDim2.new(0, 106, 0, 18)
+teleport.Parent = buttons
+
+local teleport_frame = Instance.new("Frame")
+teleport_frame.Name = "Frame"
+teleport_frame.BackgroundColor3 = Color3.new(0.529, 0.529, 0.529)
+teleport_frame.Position = UDim2.new(0, -6, 0, 0)
+teleport_frame.BorderColor3 = Color3.new()
+teleport_frame.BorderSizePixel = 0
+teleport_frame.Size = UDim2.new(0, 15, 0, 18)
+teleport_frame.Parent = teleport
+
+local uICorner_teleportFrame = Instance.new("UICorner")
+uICorner_teleportFrame.Name = "UICorner"
+uICorner_teleportFrame.Parent = teleport_frame
+
+attachButtonSounds(teleport)
+
+local function getRoot(char)
+	return char and char:FindFirstChild("HumanoidRootPart")
+end
+
+local function teleportTo(targetPlayer)
+	local char = LocalPlayer.Character
+	local root = getRoot(char)
+	local humanoid = char and char:FindFirstChildOfClass("Humanoid")
+	local targetChar = targetPlayer.Character
+	local targetRoot = getRoot(targetChar)
+
+	if not root or not targetRoot or not humanoid then return end
+
+	if humanoid.Sit then
+		humanoid.Sit = false
+		task.wait(0.1)
+	end
+
+	local targetCFrame = targetRoot.CFrame * CFrame.new(0, 3, 0)
+	local tweenInfo = TweenInfo.new(0.1, Enum.EasingStyle.Linear)
+	local tween = TweenService:Create(root, tweenInfo, {CFrame = targetCFrame})
+	tween:Play()
+end
+
+teleport.MouseButton1Click:Connect(function()
+	local uname = username.Value
+	if uname == "" then return end
+	local target = Players:FindFirstChild(uname)
+	if target then teleportTo(target) end
+end)
+
+local kill = Instance.new("TextButton")
+kill.Name = "Kill"
+kill.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json")
+kill.TextColor3 = Color3.new(0.898, 0.898, 0.898)
+kill.BorderColor3 = Color3.new()
+kill.Text = "Kill"
+kill.AutoButtonColor = false
+kill.BackgroundColor3 = Color3.new(0.529, 0.529, 0.529)
+kill.Position = UDim2.new(0.054, 0, 0.129, 0)
+kill.BorderSizePixel = 0
+kill.TextSize = 14
+kill.Size = UDim2.new(0, 106, 0, 18)
+kill.Parent = buttons
+
+local kill_frame = Instance.new("Frame")
+kill_frame.Name = "Frame"
+kill_frame.BackgroundColor3 = Color3.new(0.529, 0.529, 0.529)
+kill_frame.Position = UDim2.new(0, -6, 0, 0)
+kill_frame.BorderColor3 = Color3.new()
+kill_frame.BorderSizePixel = 0
+kill_frame.Size = UDim2.new(0, 15, 0, 18)
+kill_frame.Parent = kill
+
+local uICorner_killFrame = Instance.new("UICorner")
+uICorner_killFrame.Name = "UICorner"
+uICorner_killFrame.Parent = kill_frame
+
+attachButtonSounds(kill)
+
+local flinging = false
+local flingBambam = nil
+local flingDied = nil
+local noclipConnection = nil
+local savedLocation = nil
+
+local function tweenTo(targetCFrame, duration)
+	local char = LocalPlayer.Character
+	local root = getRoot(char)
+	local humanoid = char and char:FindFirstChildOfClass("Humanoid")
+	if not root or not humanoid then return end
+
+	if humanoid.SeatPart or humanoid.Sit then
+		humanoid.Sit = false
+		task.wait(0.05)
+	end
+
+	local tween = TweenService:Create(root, TweenInfo.new(duration, Enum.EasingStyle.Linear), {
+		CFrame = targetCFrame
+	})
+	tween:Play()
+	tween.Completed:Wait()
+end
+
+local function startNoclip()
+	noclipConnection = RunService.Stepped:Connect(function()
+		local char = LocalPlayer.Character
+		if char then
+			for _, child in pairs(char:GetDescendants()) do
+				if child:IsA("BasePart") and child.CanCollide then
+					child.CanCollide = false
+				end
+			end
+		end
+	end)
+end
+
+local function stopNoclip()
+	if noclipConnection then
+		noclipConnection:Disconnect()
+		noclipConnection = nil
+	end
+end
+
+local function stopFling()
+	flinging = false
+	stopNoclip()
+
+	if flingDied then flingDied:Disconnect() flingDied = nil end
+
+	if flingBambam and flingBambam.Parent then
+		flingBambam:Destroy()
+		flingBambam = nil
+	end
+
+	local char = LocalPlayer.Character
+	if char then
+		for _, child in pairs(char:GetDescendants()) do
+			if child:IsA("BasePart") then
+				child.CustomPhysicalProperties = PhysicalProperties.new(0.7, 0.3, 0.5)
+				child.Massless = false
+			end
+		end
+	end
+end
+
+local function startFling()
+	local char = LocalPlayer.Character
+	if not char then return end
+
+	for _, child in pairs(char:GetDescendants()) do
+		if child:IsA("BasePart") then
+			child.CustomPhysicalProperties = PhysicalProperties.new(100, 0.3, 0.5)
+		end
+	end
+
+	startNoclip()
+	task.wait(0.1)
+
+	local root = getRoot(char)
+	if not root then return end
+
+	flingBambam = Instance.new("BodyAngularVelocity")
+	flingBambam.Name = "FlingBAV"
+	flingBambam.Parent = root
+	flingBambam.AngularVelocity = Vector3.new(0, 99999, 0)
+	flingBambam.MaxTorque = Vector3.new(0, math.huge, 0)
+	flingBambam.P = math.huge
+
+	for _, v in pairs(char:GetChildren()) do
+		if v:IsA("BasePart") then
+			v.CanCollide = false
+			v.Massless = true
+			v.Velocity = Vector3.new(0, 0, 0)
+		end
+	end
+
+	flinging = true
+
+	local humanoid = char:FindFirstChildOfClass("Humanoid")
+	if humanoid then
+		flingDied = humanoid.Died:Connect(stopFling)
+	end
+
+	task.spawn(function()
+		repeat
+			if flingBambam and flingBambam.Parent then
+				flingBambam.AngularVelocity = Vector3.new(0, 99999, 0)
+			end
+			task.wait(0.2)
+			if flingBambam and flingBambam.Parent then
+				flingBambam.AngularVelocity = Vector3.new(0, 0, 0)
+			end
+			task.wait(0.1)
+		until not flinging
+	end)
+end
+
+kill.MouseButton1Click:Connect(function()
+	local uname = username.Value
+	if uname == "" then return end
+
+	local target = Players:FindFirstChild(uname)
+	if not target or not target.Character then return end
+
+	local targetRoot = getRoot(target.Character)
+	local myChar = LocalPlayer.Character
+	local myRoot = getRoot(myChar)
+	if not targetRoot or not myRoot then return end
+
+	savedLocation = myRoot.CFrame
+
+	local initialPos = targetRoot.CFrame * CFrame.new(0, 3, 0)
+	tweenTo(initialPos, 0.1)
+	startFling()
+
+	local flingTime = 3
+	local startTime = tick()
+
+	task.spawn(function()
+		while flinging and (tick() - startTime) < flingTime do
+			if targetRoot and targetRoot.Parent then
+				local currentTargetPos = targetRoot.CFrame * CFrame.new(0, 3, 0)
+				tweenTo(currentTargetPos, 0.1)
+			end
+			task.wait()
+		end
+
+		if myRoot and myRoot.Parent then
+			tweenTo(savedLocation, 0.1)
+		end
+
+		stopFling()
+		savedLocation = nil
+	end)
+end)
+
+local spectate = Instance.new("TextLabel")
+spectate.Name = "Spectate"
+spectate.FontFace = Font.new("rbxasset://fonts/families/SourceSansPro.json")
+spectate.TextColor3 = Color3.new(0.898, 0.898, 0.898)
+spectate.Text = "Spectate"
+spectate.BackgroundColor3 = Color3.new(0.529, 0.529, 0.529)
+spectate.Position = UDim2.new(0.0536, 0, 0.233, 0)
+spectate.BorderSizePixel = 0
+spectate.BorderColor3 = Color3.new()
+spectate.TextSize = 14
+spectate.Size = UDim2.new(0, 106, 0, 18)
+spectate.Parent = buttons
+
+local spectate_frame1 = Instance.new("Frame")
+spectate_frame1.Name = "Frame"
+spectate_frame1.BackgroundColor3 = Color3.new(0.529, 0.529, 0.529)
+spectate_frame1.Position = UDim2.new(0, -6, 0, 6)
+spectate_frame1.BorderColor3 = Color3.new()
+spectate_frame1.BorderSizePixel = 0
+spectate_frame1.Size = UDim2.new(0, 15, 0, 12)
+spectate_frame1.Parent = spectate
+
+local spectate_frame2 = Instance.new("Frame")
+spectate_frame2.Name = "Frame"
+spectate_frame2.BackgroundColor3 = Color3.new(0.529, 0.529, 0.529)
+spectate_frame2.Position = UDim2.new(0, -6, 0, 0)
+spectate_frame2.BorderColor3 = Color3.new()
+spectate_frame2.BorderSizePixel = 0
+spectate_frame2.Size = UDim2.new(0, 15, 0, 12)
+spectate_frame2.Parent = spectate
+
+local uICorner_spectateFrame2 = Instance.new("UICorner")
+uICorner_spectateFrame2.Name = "UICorner"
+uICorner_spectateFrame2.Parent = spectate_frame2
+
+local list = Instance.new("ScrollingFrame")
+list.Name = "List"
+list.ScrollBarImageColor3 = Color3.new()
+list.BackgroundColor3 = Color3.new(0.463, 0.463, 0.463)
+list.Active = true
+list.BorderColor3 = Color3.new()
+list.Position = UDim2.new(-0.0566, 0, 1, 0)
+list.BorderSizePixel = 0
+list.Size = UDim2.new(0, 112, 0, 160)
+list.Parent = spectate
+
+local uIListLayout = Instance.new("UIListLayout")
+uIListLayout.Name = "UIListLayout"
+uIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+uIListLayout.Parent = list
+
+local spectate_frame3 = Instance.new("Frame")
+spectate_frame3.Name = "Frame"
+spectate_frame3.BackgroundColor3 = Color3.new(0.463, 0.463, 0.463)
+spectate_frame3.Position = UDim2.new(0, -6, 0, 172)
+spectate_frame3.BorderColor3 = Color3.new()
+spectate_frame3.BorderSizePixel = 0
+spectate_frame3.Size = UDim2.new(0, 112, 0, 12)
+spectate_frame3.Parent = spectate
+
+local uICorner_spectateFrame3 = Instance.new("UICorner")
+uICorner_spectateFrame3.Name = "UICorner"
+uICorner_spectateFrame3.Parent = spectate_frame3
+
+local function makePlayerButton(player)
+	local btn = Instance.new("TextButton")
+	btn.Name = player.Name
+	btn.Text = player.DisplayName
+	btn.BackgroundTransparency = 1
+	btn.TextColor3 = Color3.fromRGB(229, 229, 229)
+	btn.TextScaled = true
+	btn.TextXAlignment = Enum.TextXAlignment.Left
+	btn.Size = UDim2.new(1, 0, 0, 30)
+	btn.Parent = list
+
+	attachButtonSounds(btn)
+
+	btn.MouseButton1Click:Connect(function()
+		username.Value = ""
+		task.wait()
+		username.Value = player.Name
+	end)
+end
+
+local function removePlayerButton(player)
+	local btn = list:FindFirstChild(player.Name)
+	if btn then btn:Destroy() end
+end
+
+for _, player in ipairs(Players:GetPlayers()) do
+	makePlayerButton(player)
+end
+
+Players.PlayerAdded:Connect(makePlayerButton)
+Players.PlayerRemoving:Connect(removePlayerButton)
+
+local spectateFrame = Instance.new("ViewportFrame")
+spectateFrame.Name = "SpectateFrame"
+spectateFrame.BackgroundColor3 = Color3.new(0.529, 0.529, 0.529)
+spectateFrame.Position = UDim2.new(0.242, 0, 0.126, 0)
+spectateFrame.BorderColor3 = Color3.new()
+spectateFrame.BorderSizePixel = 0
+spectateFrame.Size = UDim2.new(0, 353, 0, 240)
+spectateFrame.Parent = window
+
+local uICorner_spectateFrame = Instance.new("UICorner")
+uICorner_spectateFrame.Name = "UICorner"
+uICorner_spectateFrame.Parent = spectateFrame
+
+local worldModel = Instance.new("WorldModel")
+worldModel.Parent = spectateFrame
+
+local vpCamera = Instance.new("Camera")
+vpCamera.Parent = spectateFrame
+spectateFrame.CurrentCamera = vpCamera
+
+local ORBIT_SPEED = 0.4
+local ORBIT_DISTANCE = 6
+local ORBIT_HEIGHT = 2.5
+local orbitAngle = 0
+local MAP_UPDATE_INTERVAL = 1
+
+local renderConnection
+local mapConnection
+local clonedCharacter = nil
+local charConnections = {}
+local otherClones = {}
+local mapClones = {}
+
+local function clearCharConnections()
+	for _, c in ipairs(charConnections) do c:Disconnect() end
+	charConnections = {}
+end
+
+local function clearOtherClones()
+	for clone, data in pairs(otherClones) do
+		for _, c in ipairs(data.connections) do c:Disconnect() end
+		if clone and clone.Parent then clone:Destroy() end
+	end
+	otherClones = {}
+end
+
+local function clearMap()
+	if mapConnection then mapConnection:Disconnect() mapConnection = nil end
+	for _, clone in pairs(mapClones) do
+		if clone and clone.Parent then clone:Destroy() end
+	end
+	mapClones = {}
+end
+
+local function stopSpectating()
+	if renderConnection then renderConnection:Disconnect() renderConnection = nil end
+	clearCharConnections()
+	clearOtherClones()
+	clearMap()
+	if clonedCharacter then clonedCharacter:Destroy() clonedCharacter = nil end
+end
+
+local function cloneAndMirrorCharacter(character, parent)
+	task.wait(2)
+	character.Archivable = true
+	local ok, clone = pcall(function() return character:Clone() end)
+	if not ok or not clone then return nil, {} end
+
+	clone.Parent = parent
+
+	local chum = clone:FindFirstChildOfClass("Humanoid")
+	if chum then chum.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.None end
+
+	local cloneAnimator = clone:FindFirstChild("Animator", true)
+	if cloneAnimator then
+		for _, track in ipairs(cloneAnimator:GetPlayingAnimationTracks()) do track:Stop() end
+	end
+
+	local connections = {}
+
+	local realAnimator = character:FindFirstChild("Animator", true)
+	if realAnimator and cloneAnimator then
+		local conn = realAnimator.AnimationPlayed:Connect(function(animTrack)
+			local load = cloneAnimator:LoadAnimation(animTrack.Animation)
+			load:Play()
+			load:AdjustSpeed(animTrack.Speed)
+			animTrack.Stopped:Connect(function() load:Stop() load:Destroy() end)
+		end)
+		table.insert(connections, conn)
+	end
+
+	local moveConn = RunService.RenderStepped:Connect(function()
+		if character and clone and character.PrimaryPart and clone.PrimaryPart then
+			clone:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame())
+		end
+	end)
+	table.insert(connections, moveConn)
+
+	local destroyConn = character.Destroying:Connect(function()
+		if clone and clone.Parent then clone:Destroy() end
+	end)
+	table.insert(connections, destroyConn)
+
+	return clone, connections
+end
+
+local function isCharacterDescendant(instance)
+	for _, player in ipairs(Players:GetPlayers()) do
+		if player.Character and instance:IsDescendantOf(player.Character) then return true end
+	end
+	return false
+end
+
+local function setupOtherPlayer(player, targetPlayer)
+	if player == targetPlayer or player == Players.LocalPlayer then return end
+	local character = player.Character
+	if not character then return end
+
+	task.spawn(function()
+		local clone, connections = cloneAndMirrorCharacter(character, worldModel)
+		if not clone then return end
+		otherClones[clone] = { connections = connections }
+
+		player.CharacterAdded:Connect(function(newChar)
+			if clone and clone.Parent then clone:Destroy() end
+			for _, c in ipairs(connections) do c:Disconnect() end
+			otherClones[clone] = nil
+
+			task.spawn(function()
+				local newClone, newConns = cloneAndMirrorCharacter(newChar, worldModel)
+				if newClone then otherClones[newClone] = { connections = newConns } end
+			end)
+		end)
+	end)
+end
+
+local function setupAllOtherPlayers(targetPlayer)
+	clearOtherClones()
+	for _, player in ipairs(Players:GetPlayers()) do
+		setupOtherPlayer(player, targetPlayer)
+	end
+end
+
+local function cloneMap()
+	for source, clone in pairs(mapClones) do
+		if source and source.Parent and clone and clone.Parent then
+			clone.CFrame = source.CFrame
+		else
+			if clone and clone.Parent then clone:Destroy() end
+			mapClones[source] = nil
+		end
+	end
+
+	for _, obj in ipairs(workspace:GetDescendants()) do
+		if obj:IsA("BasePart") and obj ~= workspace.Terrain
+			and not isCharacterDescendant(obj) and not mapClones[obj] then
+			local ok, clone = pcall(function() return obj:Clone() end)
+			if ok and clone then
+				clone.Anchored = true
+				clone.Parent = worldModel
+				mapClones[obj] = clone
+				obj.Destroying:Connect(function()
+					if clone and clone.Parent then clone:Destroy() end
+					mapClones[obj] = nil
+				end)
+			end
+		end
+	end
+end
+
+local function startMapUpdates()
+	clearMap()
+	cloneMap()
+
+	mapConnection = workspace.DescendantAdded:Connect(function(obj)
+		if obj:IsA("BasePart") and obj ~= workspace.Terrain
+			and not isCharacterDescendant(obj) and not mapClones[obj] then
+			task.wait(0.1)
+			local ok, clone = pcall(function() return obj:Clone() end)
+			if ok and clone then
+				clone.Anchored = true
+				clone.Parent = worldModel
+				mapClones[obj] = clone
+				obj.Destroying:Connect(function()
+					if clone and clone.Parent then clone:Destroy() end
+					mapClones[obj] = nil
+				end)
+			end
+		end
+	end)
+end
+
+local function setupCharacter(character, targetPlayer)
+	clearCharConnections()
+	if clonedCharacter then clonedCharacter:Destroy() clonedCharacter = nil end
+
+	task.spawn(function()
+		task.wait(2)
+		character.Archivable = true
+		local ok, clone = pcall(function() return character:Clone() end)
+		if not ok or not clone then return end
+
+		clone.Parent = worldModel
+		clonedCharacter = clone
+
+		local chum = clone:FindFirstChildOfClass("Humanoid")
+		if chum then chum.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.None end
+
+		local cloneAnimator = clone:FindFirstChild("Animator", true)
+		if cloneAnimator then
+			for _, track in ipairs(cloneAnimator:GetPlayingAnimationTracks()) do track:Stop() end
+		end
+
+		local realAnimator = character:FindFirstChild("Animator", true)
+		if realAnimator and cloneAnimator then
+			local conn = realAnimator.AnimationPlayed:Connect(function(animTrack)
+				local load = cloneAnimator:LoadAnimation(animTrack.Animation)
+				load:Play()
+				load:AdjustSpeed(animTrack.Speed)
+				animTrack.Stopped:Connect(function() load:Stop() load:Destroy() end)
+			end)
+			table.insert(charConnections, conn)
+		end
+
+		local moveConn = RunService.RenderStepped:Connect(function()
+			if character and clone and character.PrimaryPart and clone.PrimaryPart then
+				clone:SetPrimaryPartCFrame(character:GetPrimaryPartCFrame())
+			end
+		end)
+		table.insert(charConnections, moveConn)
+
+		local destroyConn = character.Destroying:Connect(function()
+			if clonedCharacter then clonedCharacter:Destroy() clonedCharacter = nil end
+		end)
+		table.insert(charConnections, destroyConn)
+	end)
+end
+
+local mapTimer = 0
+
+local function startSpectating(uname)
+	stopSpectating()
+	if uname == "" then return end
+
+	local target = Players:FindFirstChild(uname)
+	if not target then return end
+
+	local character = target.Character or target.CharacterAdded:Wait()
+
+	startMapUpdates()
+	setupCharacter(character, target)
+	setupAllOtherPlayers(target)
+
+	target.CharacterAdded:Connect(function(newChar)
+		setupCharacter(newChar, target)
+	end)
+
+	Players.PlayerAdded:Connect(function(player)
+		setupOtherPlayer(player, target)
+	end)
+
+	renderConnection = RunService.RenderStepped:Connect(function(dt)
+		mapTimer = mapTimer + dt
+		if mapTimer >= MAP_UPDATE_INTERVAL then
+			mapTimer = 0
+			for source, clone in pairs(mapClones) do
+				if source and source.Parent and clone and clone.Parent then
+					clone.CFrame = source.CFrame
+				end
+			end
+		end
+
+		local head = clonedCharacter and clonedCharacter:FindFirstChild("Head")
+		if not head then return end
+
+		orbitAngle = orbitAngle + ORBIT_SPEED * dt
+		local headPos = head.Position
+		local camPos = headPos + Vector3.new(
+			math.sin(orbitAngle) * ORBIT_DISTANCE,
+			ORBIT_HEIGHT,
+			math.cos(orbitAngle) * ORBIT_DISTANCE
+		)
+		vpCamera.CFrame = CFrame.lookAt(camPos, headPos)
+	end)
+end
+
+username.Changed:Connect(function(newValue)
+	startSpectating(newValue)
+end)
+
+if username.Value ~= "" then
+	startSpectating(username.Value)
+end
+
+local TWEEN_DURATION = 0.4
+local EASING_STYLE = Enum.EasingStyle.Quad
+
+local isFolded = false
+local isHidden = false
+
+local originalWindowState = {
+	Size = window.Size,
+	Position = window.Position,
+}
+
+local originalChildrenState = {}
+
+local function storeChildrenState()
+	originalChildrenState = {}
+	for _, child in ipairs(window:GetDescendants()) do
+		if child:IsA("GuiObject") and child ~= window then
+			originalChildrenState[child] = {
+				Size = child.Size,
+				Position = child.Position,
+				BackgroundTransparency = child.BackgroundTransparency,
+				TextTransparency = (child:IsA("TextLabel") or child:IsA("TextButton") or child:IsA("TextBox"))
+					and child.TextTransparency or nil,
+			}
+		end
+	end
+end
+
+storeChildrenState()
+
+for _, obj in ipairs(window:GetDescendants()) do
+	if obj:IsA("GuiObject") and obj ~= window then
+		if obj.BackgroundTransparency ~= nil then obj.BackgroundTransparency = 1 end
+		if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
+			obj.TextTransparency = 1
+		end
+	end
+end
+
+task.wait()
+
+for obj, state in pairs(originalChildrenState) do
+	if obj and obj.Parent then
+		TweenService:Create(obj, TweenInfo.new(0.5, EASING_STYLE), {
+			BackgroundTransparency = state.BackgroundTransparency,
+			TextTransparency = state.TextTransparency,
+		}):Play()
+	end
+end
+
+local function foldWindow()
+	if isHidden or isFolded then return end
+	isFolded = true
+
+	for obj, state in pairs(originalChildrenState) do
+		if obj and obj.Parent then
+			local props = { BackgroundTransparency = 1 }
+			if state.TextTransparency ~= nil then props.TextTransparency = 1 end
+			TweenService:Create(obj, TweenInfo.new(TWEEN_DURATION, EASING_STYLE), props):Play()
+		end
+	end
+
+	TweenService:Create(window, TweenInfo.new(TWEEN_DURATION, EASING_STYLE), {
+		Size = UDim2.new(originalWindowState.Size.X.Scale, originalWindowState.Size.X.Offset, 0, topbar.AbsoluteSize.Y),
+	}):Play()
+end
+
+local function unfoldWindow()
+	if not isFolded then return end
+	isFolded = false
+
+	for obj, state in pairs(originalChildrenState) do
+		if obj and obj.Parent then
+			local props = { BackgroundTransparency = state.BackgroundTransparency }
+			if state.TextTransparency ~= nil then props.TextTransparency = state.TextTransparency end
+			TweenService:Create(obj, TweenInfo.new(TWEEN_DURATION, EASING_STYLE), props):Play()
+		end
+	end
+
+	TweenService:Create(window, TweenInfo.new(TWEEN_DURATION, EASING_STYLE), {
+		Size = originalWindowState.Size,
+	}):Play()
+end
+
+fold.MouseButton1Click:Connect(function()
+	if isFolded then unfoldWindow() else foldWindow() end
+end)
+
+local function squishAll(targetSize, targetPos)
+	for obj, state in pairs(originalChildrenState) do
+		if obj and obj.Parent then
+			local props = { Size = UDim2.new(0, 0, 0, 0), BackgroundTransparency = 1 }
+			if state.TextTransparency ~= nil then props.TextTransparency = 1 end
+			TweenService:Create(obj, TweenInfo.new(TWEEN_DURATION, EASING_STYLE), props):Play()
+		end
+	end
+	TweenService:Create(window, TweenInfo.new(TWEEN_DURATION, EASING_STYLE), {
+		Size = targetSize,
+		Position = targetPos,
+	}):Play()
+end
+
+local function restoreAll()
+	for obj, state in pairs(originalChildrenState) do
+		if obj and obj.Parent then
+			local props = {
+				Size = state.Size,
+				Position = state.Position,
+				BackgroundTransparency = state.BackgroundTransparency,
+			}
+			if state.TextTransparency ~= nil then props.TextTransparency = state.TextTransparency end
+			TweenService:Create(obj, TweenInfo.new(TWEEN_DURATION, EASING_STYLE), props):Play()
+		end
+	end
+end
+
+local function hideWindow()
+	if isHidden or isFolded then return end
+	isHidden = true
+	storeChildrenState()
+
+	local iconAbs = icon.AbsolutePosition
+	local iconSize = icon.AbsoluteSize
+	window.AnchorPoint = Vector2.new(0.5, 0.5)
+
+	squishAll(
+		UDim2.new(0, 40, 0, 40),
+		UDim2.new(0, iconAbs.X + iconSize.X / 2, 0, iconAbs.Y + iconSize.Y / 2)
+	)
+
+	task.delay(TWEEN_DURATION, function()
+		window.Visible = false
+		icon.Visible = true
+	end)
+end
+
+local function unhideWindow()
+	if not isHidden then return end
+	isHidden = false
+
+	window.Visible = true
+	icon.Visible = false
+	restoreAll()
+
+	TweenService:Create(window, TweenInfo.new(TWEEN_DURATION, EASING_STYLE), {
+		Size = originalWindowState.Size,
+		Position = originalWindowState.Position,
+	}):Play()
+
+	task.delay(TWEEN_DURATION, function()
+		window.AnchorPoint = Vector2.new(0, 0)
+	end)
+end
+
+hide.MouseButton1Click:Connect(function()
+	if isHidden then unhideWindow() else hideWindow() end
+end)
+
+exit.MouseButton1Click:Connect(function()
+	local s = Instance.new("Sound")
+	s.SoundId = "rbxassetid://83334235103839"
+	s.Volume = 1
+	s.Parent = SoundService
+	s:Play()
+
+	local screenSize = screenGui.AbsoluteSize
+	window.AnchorPoint = Vector2.new(0.5, 0.5)
+
+	squishAll(
+		UDim2.new(0, 40, 0, 40),
+		UDim2.new(0, screenSize.X / 2, 0, screenSize.Y - 50)
+	)
+
+	task.delay(TWEEN_DURATION, function()
+		screenGui:Destroy()
+	end)
+end)
+
+imageButton.MouseButton1Click:Connect(unhideWindow)
+
+icon.Visible = false
+
+local introSound = Instance.new("Sound")
+introSound.SoundId = "rbxassetid://88161673689465"
+introSound.Volume = 1
+introSound.Parent = workspace
+introSound:Play()
+
+--[[ Made by VoidofMind lol ⌜◞⌜
+I may have used the Codify plugin but I didn't just copy-paste it,
+it would have been too easy I guess, so I did functions myself,
+modifying source can't be done here, and this is going into an
+executor. I don't know why I'm using sounds either, you're
+probably not going to be able to hear them.. Whatever, enjoy.
+]]
